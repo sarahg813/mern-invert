@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 export default class CreateStudio extends Component {
   constructor(props) {
@@ -18,12 +19,6 @@ export default class CreateStudio extends Component {
       website: "",
       picture: ""
     };
-  }
-
-  componentDidMount() {
-    this.setState({
-      name: "test name"
-    });
   }
 
   onChangeName(e) {
@@ -69,7 +64,17 @@ export default class CreateStudio extends Component {
 
     console.log(studio);
 
-    window.location = "/";
+    axios
+      .post("http://localhost:5000/studios/add", studio)
+      .then(res => console.log(res.data));
+
+    this.setState({
+      name: "",
+      phoneNum: "",
+      email: "",
+      website: "",
+      picture: ""
+    });
   }
 
   render() {
