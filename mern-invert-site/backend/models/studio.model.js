@@ -19,7 +19,7 @@ const studioSchema = new Schema({
   website: String,
   picture: String,
   socialMedia: {},
-  categories: [String]
+  categories: []
 });
 
 const Studio = mongoose.model("Studio", studioSchema);

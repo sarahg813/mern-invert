@@ -1,137 +1,154 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React from "react";
+import useCreateStudioForm from "./CustomHooks";
 
-export default class CreateStudio extends Component {
-  constructor(props) {
-    super(props);
+export default function CreateStudio() {
+  const submitted = () => {
+    console.log("Studio added!");
+  };
 
-    this.onChangeName = this.onChangeName.bind(this);
-    this.onChangePhoneNum = this.onChangePhoneNum.bind(this);
-    this.onChangeEmail = this.onChangeEmail.bind(this);
-    this.onChangeWebsite = this.onChangeWebsite.bind(this);
-    this.onChangePicture = this.onChangePicture.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+  const { inputs, handleInputChange, handleSubmit } = useCreateStudioForm(
+    submitted
+  );
 
-    this.state = {
-      name: "",
-      phoneNum: "",
-      email: "",
-      website: "",
-      picture: ""
-    };
-  }
+  return (
+    <div>
+      <h3>Create New Studio</h3>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            name="name"
+            onChange={handleInputChange}
+            value={inputs.name}
+            required
+          />
+        </div>
+        <div>
+          <span>Address:</span>
+          <label>Street:</label>
+          <input
+            type="text"
+            name="street"
+            onChange={handleInputChange}
+            value={inputs.street}
+            required
+          />
+          <label>City:</label>
+          <input
+            type="text"
+            name="city"
+            onChange={handleInputChange}
+            value={inputs.city}
+            required
+          />
+          <label>State:</label>
+          <input
+            type="text"
+            name="state"
+            onChange={handleInputChange}
+            value={inputs.state}
+            required
+          />
+          <label>Postal Code:</label>
+          <input
+            type="text"
+            name="postalCode"
+            onChange={handleInputChange}
+            value={inputs.postalCode}
+            required
+          />
+          <label>Country:</label>
+          <input
+            type="text"
+            name="country"
+            onChange={handleInputChange}
+            value={inputs.country}
+            required
+          />
+        </div>
+        <div>
+          <span>Coordinates:</span>
+          <label>latitude:</label>
+          <input
+            type="text"
+            name="latitude"
+            onChange={handleInputChange}
+            value={inputs.latitude}
+            required
+          />
+          <label>longitude:</label>
+          <input
+            type="text"
+            name="longitude"
+            onChange={handleInputChange}
+            value={inputs.longitude}
+            required
+          />
+        </div>
+        <div>
+          <label>Phone Number:</label>
+          <input
+            type="text"
+            name="phoneNum"
+            onChange={handleInputChange}
+            value={inputs.phoneNum}
+            required
+          />
+        </div>
+        <div>
+          <label>Email:</label>
+          <input
+            type="text"
+            name="email"
+            onChange={handleInputChange}
+            value={inputs.email}
+            required
+          />
+        </div>
+        <div>
+          <label>Website:</label>
+          <input
+            type="text"
+            name="website"
+            onChange={handleInputChange}
+            value={inputs.website}
+            required
+          />
+        </div>
+        <div>
+          <label>Picture:</label>
+          <input
+            type="text"
+            name="picture"
+            onChange={handleInputChange}
+            value={inputs.picture}
+            required
+          />
+        </div>
+        <div>
+          <label>Social Media:</label>
+          <input
+            type="text"
+            name="socialMedia"
+            onChange={handleInputChange}
+            value={inputs.socialMedia}
+            required
+          />
+        </div>
+        <div>
+          <label>Categories:</label>
+          <input
+            type="text"
+            name="categories"
+            onChange={handleInputChange}
+            value={inputs.categories}
+            required
+          />
+        </div>
 
-  onChangeName(e) {
-    this.setState({
-      name: e.target.value
-    });
-  }
-
-  onChangePhoneNum(e) {
-    this.setState({
-      phoneNum: e.target.value
-    });
-  }
-
-  onChangeEmail(e) {
-    this.setState({
-      email: e.target.value
-    });
-  }
-
-  onChangeWebsite(e) {
-    this.setState({
-      website: e.target.value
-    });
-  }
-
-  onChangePicture(e) {
-    this.setState({
-      picture: e.target.value
-    });
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-
-    const studio = {
-      name: this.state.name,
-      phoneNum: this.state.phoneNum,
-      email: this.state.email,
-      website: this.state.website,
-      picture: this.state.picture
-    };
-
-    console.log(studio);
-
-    axios
-      .post("http://localhost:5000/studios/add", studio)
-      .then(res => console.log(res.data));
-
-    this.setState({
-      name: "",
-      phoneNum: "",
-      email: "",
-      website: "",
-      picture: ""
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <h3>Create New Studio</h3>
-        <form onSubmit={this.onSubmit}>
-          <div>
-            <label>Name: </label>
-            <input
-              type="text"
-              required
-              value={this.state.Name}
-              onChange={this.onChangeName}
-            />
-          </div>
-          <div>
-            <label>PhoneNum: </label>
-            <input
-              type="text"
-              required
-              value={this.state.phoneNum}
-              onChange={this.onChangePhoneNum}
-            />
-          </div>
-          <div>
-            <label>Email: </label>
-            <input
-              type="text"
-              required
-              value={this.state.email}
-              onChange={this.onChangeEmail}
-            />
-          </div>
-          <div>
-            <label>Website: </label>
-            <input
-              type="text"
-              required
-              value={this.state.website}
-              onChange={this.onChangeWebsite}
-            />
-          </div>
-          <div>
-            <label>Picture: </label>
-            <input
-              type="text"
-              required
-              value={this.state.picture}
-              onChange={this.onChangePicture}
-            />
-          </div>
-          <div>
-            <input type="submit" value="Create Studio" />
-          </div>
-        </form>
-      </div>
-    );
-  }
+        <button type="submit">Add Studio</button>
+      </form>
+    </div>
+  );
 }

@@ -1,6 +1,18 @@
 const router = require("express").Router();
 let Studio = require("../models/studio.model");
 
+const toObject = arr => {
+  let newObj = {};
+
+  for (let i = 0; i < arr.length; i += 2) {
+    let key = arr[i],
+      value = arr[i + 1];
+    newObj[key] = value;
+  }
+
+  return newObj;
+};
+
 router.route("/").get((req, res) => {
   Studio.find()
     .then(studios => res.json(studios))
@@ -9,19 +21,33 @@ router.route("/").get((req, res) => {
 
 router.route("/add").post((req, res) => {
   const name = req.body.name;
-  const address = req.body.address;
-  const coordinates = req.body.coordinates;
+  const street = req.body.street;
+  const city = req.body.city;
+  const state = req.body.state;
+  const postalCode = req.body.postalCode;
+  const country = req.body.country;
+  const latitude = req.body.latitude;
+  const longitude = req.body.longitude;
   const phoneNum = req.body.phoneNum;
   const email = req.body.email;
   const website = req.body.website;
   const picture = req.body.picture;
-  const socialMedia = req.body.socialMedia;
-  const categories = req.body.categories;
+  const socialMedia = toObject(req.body.socialMedia.split(","));
+  const categories = req.body.categories.split(",");
 
   const newStudio = new Studio({
     name,
-    address,
-    coordinates,
+    address: {
+      street,
+      city,
+      state,
+      postalCode,
+      country
+    },
+    coordinates: {
+      latitude,
+      longitude
+    },
     phoneNum,
     email,
     website,
