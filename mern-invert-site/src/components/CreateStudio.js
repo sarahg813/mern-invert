@@ -3,7 +3,7 @@ import useCreateStudioForm from "./CustomHooks";
 
 export default function CreateStudio() {
   const submitted = () => {
-    console.log("Studio added!");
+    alert("Studio added!");
   };
 
   const { inputs, handleInputChange, handleSubmit } = useCreateStudioForm(
