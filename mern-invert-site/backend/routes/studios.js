@@ -62,7 +62,7 @@ router.route("/add").post((req, res) => {
     .catch(err => res.status(400).json("Error: " + err));
 });
 
-router.route("/:id").get((req, res) => {
+router.route("/profile/:id").get((req, res) => {
   Studio.findById(req.params.id)
     .then(studio => res.json(studio))
     .catch(err => res.status(400).json("Error: " + err));

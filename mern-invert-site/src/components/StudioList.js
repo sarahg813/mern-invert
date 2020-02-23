@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { withRouter, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -15,22 +16,26 @@ const useStyles = makeStyles({
   }
 });
 
-export default function StudioList() {
+function StudioList(props) {
   const classes = useStyles();
   const [data, setData] = useState({ studios: [] });
+  let history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:5000/studios/");
-
-      setData({ studios: response.data });
+      try {
+        const response = await axios.get("http://localhost:5000/studios/");
+        setData({ studios: response.data });
+      } catch (error) {
+        console.log("error", error);
+      }
     };
     fetchData();
   }, []);
 
-  if (!data) {
-    return <div>Loading data...</div>;
-  }
+  const pushHandle = id => {
+    history.push("/profile/" + id);
+  };
 
   return (
     <div className={classes.root}>
@@ -51,7 +56,13 @@ export default function StudioList() {
             {data.studios.map(studio => (
               <TableRow key={studio._id}>
                 <TableCell component="th" scope="row">
-                  {studio.name}
+                  <button
+                    onClick={() => {
+                      pushHandle(studio._id);
+                    }}
+                  >
+                    {studio.name}
+                  </button>
                 </TableCell>
                 <TableCell align="right">
                   {studio.address.street}
@@ -79,3 +90,5 @@ export default function StudioList() {
     </div>
   );
 }
+
+export default withRouter(StudioList);
