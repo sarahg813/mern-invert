@@ -41,8 +41,8 @@ function StudioPage() {
   return (
     <div className={classes.root}>
       <p>{studio.name}</p>
+      <p>{studio.phoneNum}</p>
       <p>{address.street}</p>
-      <p>{coordinates.longitude}</p>
       <p>{Object.values(socialMedia).join(", ")}</p>
       <p>{categories.join(", ")}</p>
     </div>

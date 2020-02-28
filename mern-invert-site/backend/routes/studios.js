@@ -1,6 +1,7 @@
 const router = require("express").Router();
 let Studio = require("../models/studio.model");
 
+//function to create key/value pairs for socialMedia
 const toObject = arr => {
   let newObj = {};
 
@@ -13,12 +14,33 @@ const toObject = arr => {
   return newObj;
 };
 
-router.route("/").get((req, res) => {
+const escapeRegex = text => {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
+//route to get all studios
+router.route("/").get((req, res, next) => {
   Studio.find()
     .then(studios => res.json(studios))
     .catch(err => res.status(400).json("Error: " + err));
 });
 
+//route to get search results
+router.route("/search").get((req, res) => {
+  console.log("param: " + req.query.q);
+  const regex = new RegExp(escapeRegex(req.query.q), "gi");
+  Studio.find({
+    $or: [
+      { "address.city": regex },
+      { "address.state": regex },
+      { "address.postalCode": regex }
+    ]
+  })
+    .then(studio => res.json(studio))
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+//route to add a studio
 router.route("/add").post((req, res) => {
   const name = req.body.name;
   const street = req.body.street;
@@ -62,18 +84,21 @@ router.route("/add").post((req, res) => {
     .catch(err => res.status(400).json("Error: " + err));
 });
 
+//route to get studio by id
 router.route("/profile/:id").get((req, res) => {
   Studio.findById(req.params.id)
     .then(studio => res.json(studio))
     .catch(err => res.status(400).json("Error: " + err));
 });
 
+//route to delete a studio by id
 router.route("/id").delete((req, res) => {
   Studio.findByIdAndDelete(req.params.id)
     .then(() => res.json("Studio deleted!"))
     .catch(err => res.status(400).json("Error: " + err));
 });
 
+//route to update a studio by id
 router.route("/update/:id").post((req, res) => {
   Studio.findById(req.params.id)
     .then(studio => {

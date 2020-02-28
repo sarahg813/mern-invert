@@ -12,7 +12,7 @@ export default class Navbar extends Component {
         <div>
           <ul>
             <li>
-              <Link to="/" className="nav-link">
+              <Link to="/studios" className="nav-link">
                 Studios
               </Link>
             </li>
