@@ -2,19 +2,19 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   palette: {
-    primary: "#7986cb",
-    secondary: {
-      main: "#f50057"
+    primary: {
+      main: "#ffffff",
+      dark: "#0f0d0d"
     }
   },
   typography: {
-    fontFamily: '"Arapey","Roboto Condensed", "Rochester", sans-serif',
+    fontFamily: '"Montserrat","Righteous", "Yeseva One", sans-serif',
     fontWeightLight: 300,
     fontWeightRegular: 400,
-    fontWeightMedium: 500
-  },
-  button: {
-    color: "#ffffff"
+    fontWeightMedium: 500,
+    button: {
+      textTransform: "none"
+    }
   }
 });
 
