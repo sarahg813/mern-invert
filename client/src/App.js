@@ -30,9 +30,9 @@ function App() {
   const classes = useStyles();
   return (
     <ThemeProvider theme={theme}>
-      <div className={classes.app}>
-        <CssBaseline />
-        <Router>
+      <Router>
+        <div className={classes.app}>
+          <CssBaseline />
           <Navbar />
           <Container component="main" className={classes.main}>
             <Switch>
@@ -43,8 +43,8 @@ function App() {
               <Route path="/create" component={CreateStudio} />
             </Switch>
           </Container>
-        </Router>
-      </div>
+        </div>
+      </Router>
     </ThemeProvider>
   );
 }

@@ -69,7 +69,7 @@ export default function DesktopNavbar(props) {
         <Toolbar className={classes.toolbar}>
           <Box flexGrow={1}>
             <Button component={NavLink} exact to="/">
-              <Typography variant="h4" className={classes.title}>
+              <Typography component="h1" variant="h4" className={classes.title}>
                 invertdex
               </Typography>
             </Button>
