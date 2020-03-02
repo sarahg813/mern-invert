@@ -6,7 +6,7 @@ const studioSchema = new Schema({
   address: {
     street: String,
     city: String,
-    state: { type: String, uppercase: true },
+    state: [],
     postalCode: String,
     country: String
   },

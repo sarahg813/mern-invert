@@ -33,8 +33,6 @@ export default function SearchResultPage() {
     }
   };
 
-  console.log(data);
-
   const pushHandle = id => {
     history.push("/profile/" + id);
   };

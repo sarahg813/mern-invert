@@ -1,7 +1,15 @@
 import React from "react";
 import useCreateStudioForm from "./CustomHooks";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(theme => ({
+  container: {
+    backgroundColor: "white"
+  }
+}));
 
 export default function CreateStudio() {
+  const classes = useStyles();
   const submitted = () => {
     alert("Studio added!");
   };
@@ -11,7 +19,7 @@ export default function CreateStudio() {
   );
 
   return (
-    <div>
+    <div className={classes.container}>
       <h3>Create New Studio</h3>
       <form onSubmit={handleSubmit}>
         <div>

@@ -17,10 +17,6 @@ const useStyles = makeStyles(theme => ({
     fontFamily: "Playfair Display",
     color: "#fff",
     fontSize: "3em"
-  },
-  text: {
-    fontFamily: "Montserrat",
-    color: "#fff"
   }
 }));
 
@@ -37,10 +33,8 @@ export default function Home() {
           Find a studio where you can invert!
         </Typography>
         <br />
+
         <Search />
-        <Typography variant="caption" className={classes.text}>
-          (currently Brooklyn or New York works for now)
-        </Typography>
       </Grid>
     </div>
   );

@@ -21,7 +21,7 @@ const theme = createMuiTheme({
       root: {
         position: "relative",
         "& $notchedOutline": {
-          borderColor: "#e14eca"
+          borderColor: "#e14eca" //pink
         },
         "&:hover:not($disabled):not($focused):not($error) $notchedOutline": {
           borderColor: "#fff",
@@ -31,7 +31,7 @@ const theme = createMuiTheme({
           }
         },
         "&$focused $notchedOutline": {
-          borderColor: "#1d8cf8",
+          borderColor: "#1d8cf8", //blue
           borderWidth: 1
         }
       }
