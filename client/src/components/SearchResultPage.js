@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
-import ResultList from "./ResultList";
-import Search from "./SearchForm";
+import { useHistory, withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -17,10 +15,15 @@ const useStyles = makeStyles({
   }
 });
 
-export default function SearchResultPage() {
+const SearchResultPage = props => {
   const classes = useStyles();
   let history = useHistory();
+  const [searchValue, setSearchValue] = useState("");
   const [data, setData] = useState({ studios: [] });
+
+  useEffect(() => {
+    setData({ studios: props.location.state.results });
+  }, []);
 
   const search = async searchValue => {
     try {
@@ -39,7 +42,6 @@ export default function SearchResultPage() {
 
   return (
     <div className={classes.root}>
-      <Search search={search} />
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableBody>
@@ -79,4 +81,6 @@ export default function SearchResultPage() {
       </TableContainer>
     </div>
   );
-}
+};
+
+export default withRouter(SearchResultPage);
