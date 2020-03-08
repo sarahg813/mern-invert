@@ -1,14 +1,41 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../map.css";
 import { useParams, withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import { Container, Typography } from "@material-ui/core";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import YouTubeIcon from "@material-ui/icons/YouTube";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import MapContainer from "./MapContainer";
 
 const useStyles = makeStyles({
-  table: {
-    minWidth: 650
-  },
   root: {
-    backgroundColor: "white"
+    border: "1px solid #344675",
+    borderRadius: "5%"
+  },
+  media: {
+    height: 145,
+    width: 145
+  },
+  image: {
+    display: "block",
+    marginRight: "auto",
+    marginLeft: "auto",
+    maxWidth: "100%",
+    height: "140px"
+  },
+  circle: {
+    backgroundColor: "#212529",
+    borderRadius: "10%",
+    height: "150px",
+    width: "150px",
+    margin: "30px"
+  },
+  map: {
+    height: "400px",
+    width: "400px"
   }
 });
 
@@ -41,13 +68,82 @@ function StudioPage() {
 
   return (
     <div className={classes.root}>
-      <p>{studio.name}</p>
-      <p>{studio.phoneNum}</p>
-      <p>{address.street}</p>
-      <p>{Object.values(socialMedia).join(", ")}</p>
-      <p>{categories.join(", ")}</p>
+      <Container>
+        <div className={classes.circle}>
+          <img className={classes.image} src={studio.picture} />
+        </div>
+
+        <Typography gutterBottom variant="h5" component="h2">
+          {studio.name}
+        </Typography>
+        <div className={classes.socialicons}>
+          {socialMedia.facebook && (
+            <a
+              aria-label="facebook"
+              target="_blank"
+              href={socialMedia.facebook}
+              rel="noopener noreferrer"
+            >
+              <FacebookIcon
+                fontSize="medium"
+                color="primary"
+                value="facebook"
+              />
+            </a>
+          )}
+          {socialMedia.instagram && (
+            <a
+              aria-label="instagram"
+              target="_blank"
+              href={socialMedia.instagram}
+              rel="noopener noreferrer"
+            >
+              <InstagramIcon
+                fontSize="medium"
+                color="primary"
+                value="instagram"
+              />
+            </a>
+          )}
+          {socialMedia.twitter && (
+            <a
+              aria-label="twitter"
+              target="_blank"
+              href={socialMedia.twitter}
+              rel="noopener noreferrer"
+            >
+              <TwitterIcon fontSize="medium" color="primary" value="twitter" />
+            </a>
+          )}
+          {socialMedia.youtube && (
+            <a
+              aria-label="youtube"
+              target="_blank"
+              href={socialMedia.youtube}
+              rel="noopener noreferrer"
+            >
+              <YouTubeIcon fontSize="medium" color="primary" value="youtube" />
+            </a>
+          )}
+        </div>
+        <div className={classes.map}>
+          {Object.keys(coordinates).length > 0 && (
+            <MapContainer coordinates={coordinates} />
+          )}
+        </div>
+      </Container>
     </div>
   );
 }
 
 export default withRouter(StudioPage);
+
+{
+  /* 
+      <p>{studio.name}</p>
+      <p>{studio.phoneNum}</p>
+      <p>{address.street}</p>
+      
+      <p>{categories.join(", ")}</p>
+    </div> */
+}
