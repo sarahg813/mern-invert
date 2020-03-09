@@ -13,7 +13,8 @@ import MapContainer from "./MapContainer";
 const useStyles = makeStyles({
   root: {
     border: "1px solid #344675",
-    borderRadius: "5%"
+    borderRadius: "5%",
+    width: "100%"
   },
   media: {
     height: 145,
@@ -27,7 +28,7 @@ const useStyles = makeStyles({
     height: "140px"
   },
   circle: {
-    backgroundColor: "#212529",
+    backgroundColor: "#000",
     borderRadius: "10%",
     height: "150px",
     width: "150px",
@@ -36,6 +37,9 @@ const useStyles = makeStyles({
   map: {
     height: "400px",
     width: "400px"
+  },
+  text: {
+    color: "white"
   }
 });
 
@@ -73,8 +77,22 @@ function StudioPage() {
           <img className={classes.image} src={studio.picture} />
         </div>
 
-        <Typography gutterBottom variant="h5" component="h2">
+        <Typography
+          className={classes.text}
+          gutterBottom
+          variant="h5"
+          component="h2"
+        >
           {studio.name}
+        </Typography>
+        <Typography className={classes.text} gutterBottom>
+          {studio.name} <br />
+          {studio.phoneNum} <br />
+          {address.street} <br />
+          {address.city}, {address.state} {address.postalCode}
+          <br />
+          {studio.email} <br />
+          {studio.website}
         </Typography>
         <div className={classes.socialicons}>
           {socialMedia.facebook && (
