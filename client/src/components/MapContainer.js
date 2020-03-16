@@ -3,6 +3,12 @@ import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
 require("dotenv").config();
 
+const containerStyle = {
+  position: "relative",
+  width: "100%",
+  height: "0%"
+};
+
 export class MapContainer extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +17,7 @@ export class MapContainer extends Component {
   render() {
     return (
       <Map
+        containerStyle={containerStyle}
         google={this.props.google}
         zoom={17}
         style={{ height: "400px", width: "400px" }}

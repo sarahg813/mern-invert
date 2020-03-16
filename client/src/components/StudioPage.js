@@ -3,28 +3,32 @@ import axios from "axios";
 import "../map.css";
 import { useParams, withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, Typography } from "@material-ui/core";
+import { Container, Grid, Typography } from "@material-ui/core";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import InstagramIcon from "@material-ui/icons/Instagram";
+import PhoneIcon from "@material-ui/icons/Phone";
+import EmailIcon from "@material-ui/icons/Email";
+import RoomIcon from "@material-ui/icons/Room";
+import LinkIcon from "@material-ui/icons/Link";
 import MapContainer from "./MapContainer";
 
 const useStyles = makeStyles({
   root: {
+    width: "100%",
+    color: "white",
+    margin: "5rem"
+  },
+  container: {
     border: "1px solid #344675",
     borderRadius: "5%",
-    width: "100%"
+    padding: "2rem"
   },
-  media: {
-    height: 145,
-    width: 145
+  imageContainer: {
+    marginBottom: "1rem"
   },
   image: {
-    display: "block",
-    marginRight: "auto",
-    marginLeft: "auto",
-    maxWidth: "100%",
     height: "140px"
   },
   circle: {
@@ -38,7 +42,20 @@ const useStyles = makeStyles({
     height: "400px",
     width: "400px"
   },
-  text: {
+  studioName: {
+    fontFamily: "Playfair Display"
+  },
+  nameContainer: {
+    marginBottom: "2rem"
+  },
+  mediaIcons: {
+    margin: ".5rem"
+  },
+  icon: {
+    marginRight: ".5rem"
+  },
+  website: {
+    textDecoration: "none",
     color: "white"
   }
 });
@@ -50,6 +67,7 @@ function StudioPage() {
   const [coordinates, setCoordinates] = useState({});
   const [socialMedia, setSocialMedia] = useState({});
   const [categories, setCategories] = useState([]);
+  const [stateName, setStateName] = useState([]);
 
   let { id } = useParams();
 
@@ -60,6 +78,7 @@ function StudioPage() {
 
         setStudio(response.data);
         setAddress(response.data.address);
+        setStateName(response.data.address.state);
         setCoordinates(response.data.coordinates);
         setSocialMedia(response.data.socialMedia);
         setCategories(response.data.categories);
@@ -72,96 +91,128 @@ function StudioPage() {
 
   return (
     <div className={classes.root}>
-      <Container>
-        <div className={classes.circle}>
-          <img className={classes.image} src={studio.picture} />
-        </div>
-
-        <Typography
-          className={classes.text}
-          gutterBottom
-          variant="h5"
-          component="h2"
+      <Grid container className={classes.container}>
+        <Grid
+          container
+          justify="center"
+          direction="column"
+          alignItems="center"
+          className={classes.nameContainer}
         >
-          {studio.name}
-        </Typography>
-        <Typography className={classes.text} gutterBottom>
-          {studio.name} <br />
-          {studio.phoneNum} <br />
-          {address.street} <br />
-          {address.city}, {address.state} {address.postalCode}
-          <br />
-          {studio.email} <br />
-          {studio.website}
-        </Typography>
-        <div className={classes.socialicons}>
-          {socialMedia.facebook && (
-            <a
-              aria-label="facebook"
-              target="_blank"
-              href={socialMedia.facebook}
-              rel="noopener noreferrer"
-            >
-              <FacebookIcon
-                fontSize="medium"
+          <Grid item className={classes.imageContainer}>
+            <img className={classes.image} src={studio.picture} />
+          </Grid>
+          <Grid item>
+            <Typography variant="h4" className={classes.studioName}>
+              {studio.name}
+            </Typography>
+          </Grid>
+        </Grid>
+
+        <Grid container justify="space-between">
+          <Grid item md={7}>
+            <Typography variant="body1">
+              <RoomIcon
+                fontSize="small"
                 color="primary"
-                value="facebook"
-              />
-            </a>
-          )}
-          {socialMedia.instagram && (
-            <a
-              aria-label="instagram"
-              target="_blank"
-              href={socialMedia.instagram}
-              rel="noopener noreferrer"
-            >
-              <InstagramIcon
-                fontSize="medium"
-                color="primary"
-                value="instagram"
-              />
-            </a>
-          )}
-          {socialMedia.twitter && (
-            <a
-              aria-label="twitter"
-              target="_blank"
-              href={socialMedia.twitter}
-              rel="noopener noreferrer"
-            >
-              <TwitterIcon fontSize="medium" color="primary" value="twitter" />
-            </a>
-          )}
-          {socialMedia.youtube && (
-            <a
-              aria-label="youtube"
-              target="_blank"
-              href={socialMedia.youtube}
-              rel="noopener noreferrer"
-            >
-              <YouTubeIcon fontSize="medium" color="primary" value="youtube" />
-            </a>
-          )}
-        </div>
-        <div className={classes.map}>
-          {Object.keys(coordinates).length > 0 && (
-            <MapContainer coordinates={coordinates} />
-          )}
-        </div>
-      </Container>
+                value="address pin icon"
+              />{" "}
+              {address.street}, {address.city}, {stateName[0]}{" "}
+              {address.postalCode} <br />
+              <PhoneIcon fontSize="small" color="primary" value="phone" />{" "}
+              {studio.phoneNum}
+            </Typography>
+            <Typography variant="body1">
+              <LinkIcon fontSize="small" color="primary" value="link icon" />{" "}
+              <a
+                target="_blank"
+                href={studio.website}
+                rel="noopener noreferrer"
+                className={classes.website}
+              >
+                {studio.website}
+              </a>
+            </Typography>
+            <Typography variant="body1">
+              <EmailIcon fontSize="small" color="primary" value="email icon" />{" "}
+              {studio.email}
+            </Typography>
+            <div className={classes.mediaIcons}>
+              {socialMedia.facebook && (
+                <a
+                  aria-label="facebook"
+                  target="_blank"
+                  href={socialMedia.facebook}
+                  rel="noopener noreferrer"
+                >
+                  <FacebookIcon
+                    fontSize="medium"
+                    color="primary"
+                    value="facebook"
+                    className={classes.icon}
+                  />
+                </a>
+              )}
+              {socialMedia.instagram && (
+                <a
+                  aria-label="instagram link"
+                  target="_blank"
+                  href={socialMedia.instagram}
+                  rel="noopener noreferrer"
+                >
+                  <InstagramIcon
+                    fontSize="medium"
+                    color="primary"
+                    value="instagram"
+                    className={classes.icon}
+                  />
+                </a>
+              )}
+              {socialMedia.twitter && (
+                <a
+                  aria-label="twitter link"
+                  target="_blank"
+                  href={socialMedia.twitter}
+                  rel="noopener noreferrer"
+                >
+                  <TwitterIcon
+                    fontSize="medium"
+                    color="primary"
+                    value="twitter"
+                    className={classes.icon}
+                  />
+                </a>
+              )}
+              {socialMedia.youtube && (
+                <a
+                  aria-label="youtube link"
+                  target="_blank"
+                  href={socialMedia.youtube}
+                  rel="noopener noreferrer"
+                >
+                  <YouTubeIcon
+                    fontSize="medium"
+                    color="primary"
+                    value="youtube"
+                    className={classes.icon}
+                  />
+                </a>
+              )}
+            </div>
+            <Typography variant="body2">
+              &#91; {categories.join(", ")} &#93;
+            </Typography>
+          </Grid>
+
+          <Grid item md={5} className={classes.map}>
+            {Object.keys(coordinates).length > 0 && (
+              <MapContainer coordinates={coordinates} />
+            )}
+          </Grid>
+        </Grid>
+      </Grid>
     </div>
   );
 }
 
 export default withRouter(StudioPage);
-
-{
-  /* 
-      <p>{studio.name}</p>
-      <p>{studio.phoneNum}</p>
-      <p>{address.street}</p>
-      
-      <p>{categories.join(", ")}</p>
-    </div> */
-}
