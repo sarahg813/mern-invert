@@ -76,7 +76,7 @@ const SearchForm = props => {
           </Grid>
         </form>
         <Typography variant="caption" className={classes.text}>
-          (currently Brooklyn or New York works for now)
+          (Brooklyn or New York works for now)
         </Typography>
       </Grid>
       {data.length > 0 && (

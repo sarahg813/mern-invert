@@ -2,6 +2,10 @@ import React from "react";
 import Search from "./SearchForm";
 import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import silksImg from "../images/backgroundfigures/silks-400.png";
+import poleImg from "../images/backgroundfigures/pole-400.png";
+import trapezeImg from "../images/backgroundfigures/trapeze-300.png";
+import cheststandImg from "../images/backgroundfigures/cheststand-550.png";
 
 const useStyles = makeStyles(theme => ({
   home: {
@@ -11,7 +15,8 @@ const useStyles = makeStyles(theme => ({
     "@media (max-width: 767px)": {
       height: "100%",
       minHeight: "100vh"
-    }
+    },
+    background: `url(${silksImg}) right top no-repeat, url(${poleImg}) left bottom no-repeat, url(${trapezeImg}) center top no-repeat, url(${cheststandImg}) right bottom no-repeat`
   },
   pageInfo: {
     fontFamily: "Playfair Display",
