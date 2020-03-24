@@ -9,6 +9,7 @@ import cheststandImg from "../images/backgroundfigures/cheststand-550.png";
 
 const useStyles = makeStyles(theme => ({
   home: {
+    width: "100vw",
     display: "flex",
     alignItems: "center",
     flexGrow: "1",

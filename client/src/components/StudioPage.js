@@ -13,23 +13,23 @@ import EmailIcon from "@material-ui/icons/Email";
 import RoomIcon from "@material-ui/icons/Room";
 import LinkIcon from "@material-ui/icons/Link";
 import MapContainer from "./MapContainer";
+import handstandImg from "../images/backgroundfigures/handstand-300.png";
+import lyraImg from "../images/backgroundfigures/lyra-250.png";
 
 const useStyles = makeStyles({
   root: {
-    width: "100%",
+    width: "100vw",
     color: "white",
-    margin: "5rem"
+    background: `url(${handstandImg}) left bottom no-repeat, url(${lyraImg}) right top no-repeat`,
+    display: "flex"
   },
   container: {
+    margin: "auto 8rem auto 8rem"
+  },
+  gridContainer: {
     border: "1px solid #344675",
     borderRadius: "5%",
     padding: "2rem"
-  },
-  imageContainer: {
-    marginBottom: "1rem"
-  },
-  image: {
-    height: "140px"
   },
   circle: {
     backgroundColor: "#000",
@@ -46,7 +46,7 @@ const useStyles = makeStyles({
     fontFamily: "Playfair Display"
   },
   nameContainer: {
-    marginBottom: "2rem"
+    margin: "1rem 0 3rem 0"
   },
   mediaIcons: {
     margin: ".5rem"
@@ -91,126 +91,137 @@ function StudioPage() {
 
   return (
     <div className={classes.root}>
-      <Grid container className={classes.container}>
+      <div className={classes.container}>
         <Grid
           container
           justify="center"
-          direction="column"
           alignItems="center"
-          className={classes.nameContainer}
+          className={classes.gridContainer}
         >
-          <Grid item className={classes.imageContainer}>
-            <img className={classes.image} src={studio.picture} />
-          </Grid>
-          <Grid item>
-            <Typography variant="h4" className={classes.studioName}>
-              {studio.name}
-            </Typography>
-          </Grid>
-        </Grid>
-
-        <Grid container justify="space-between">
-          <Grid item md={7}>
-            <Typography variant="body1">
-              <RoomIcon
-                fontSize="small"
-                color="primary"
-                value="address pin icon"
-              />{" "}
-              {address.street}, {address.city}, {stateName[0]}{" "}
-              {address.postalCode} <br />
-              <PhoneIcon fontSize="small" color="primary" value="phone" />{" "}
-              {studio.phoneNum}
-            </Typography>
-            <Typography variant="body1">
-              <LinkIcon fontSize="small" color="primary" value="link icon" />{" "}
-              <a
-                target="_blank"
-                href={studio.website}
-                rel="noopener noreferrer"
-                className={classes.website}
-              >
-                {studio.website}
-              </a>
-            </Typography>
-            <Typography variant="body1">
-              <EmailIcon fontSize="small" color="primary" value="email icon" />{" "}
-              {studio.email}
-            </Typography>
-            <div className={classes.mediaIcons}>
-              {socialMedia.facebook && (
-                <a
-                  aria-label="facebook"
-                  target="_blank"
-                  href={socialMedia.facebook}
-                  rel="noopener noreferrer"
-                >
-                  <FacebookIcon
-                    fontSize="medium"
-                    color="primary"
-                    value="facebook"
-                    className={classes.icon}
-                  />
-                </a>
-              )}
-              {socialMedia.instagram && (
-                <a
-                  aria-label="instagram link"
-                  target="_blank"
-                  href={socialMedia.instagram}
-                  rel="noopener noreferrer"
-                >
-                  <InstagramIcon
-                    fontSize="medium"
-                    color="primary"
-                    value="instagram"
-                    className={classes.icon}
-                  />
-                </a>
-              )}
-              {socialMedia.twitter && (
-                <a
-                  aria-label="twitter link"
-                  target="_blank"
-                  href={socialMedia.twitter}
-                  rel="noopener noreferrer"
-                >
-                  <TwitterIcon
-                    fontSize="medium"
-                    color="primary"
-                    value="twitter"
-                    className={classes.icon}
-                  />
-                </a>
-              )}
-              {socialMedia.youtube && (
-                <a
-                  aria-label="youtube link"
-                  target="_blank"
-                  href={socialMedia.youtube}
-                  rel="noopener noreferrer"
-                >
-                  <YouTubeIcon
-                    fontSize="medium"
-                    color="primary"
-                    value="youtube"
-                    className={classes.icon}
-                  />
-                </a>
-              )}
-            </div>
-            <Typography variant="body2">
-              &#91; {categories.join(", ")} &#93;
-            </Typography>
+          <Grid
+            container
+            justify="center"
+            alignItems="center"
+            className={classes.nameContainer}
+          >
+            <Grid item>
+              <Typography variant="h4" className={classes.studioName}>
+                {studio.name}
+              </Typography>
+            </Grid>
           </Grid>
 
-          <Grid item md={5} className={classes.map}>
-            {Object.keys(coordinates).length > 0 && (
-              <MapContainer coordinates={coordinates} />
-            )}
+          <Grid container justify="space-between">
+            <Grid item md={7}>
+              <Typography variant="body1">
+                <RoomIcon
+                  fontSize="small"
+                  color="primary"
+                  value="address pin icon"
+                />{" "}
+                {address.street}, {address.city}, {stateName[0]}{" "}
+                {address.postalCode} <br />
+                <PhoneIcon
+                  fontSize="small"
+                  color="primary"
+                  value="phone"
+                />{" "}
+                {studio.phoneNum}
+              </Typography>
+              <Typography variant="body1">
+                <LinkIcon fontSize="small" color="primary" value="link icon" />{" "}
+                <a
+                  target="_blank"
+                  href={studio.website}
+                  rel="noopener noreferrer"
+                  className={classes.website}
+                >
+                  {studio.website}
+                </a>
+              </Typography>
+              <Typography variant="body1">
+                <EmailIcon
+                  fontSize="small"
+                  color="primary"
+                  value="email icon"
+                />{" "}
+                {studio.email}
+              </Typography>
+              <div className={classes.mediaIcons}>
+                {socialMedia.facebook && (
+                  <a
+                    aria-label="facebook"
+                    target="_blank"
+                    href={socialMedia.facebook}
+                    rel="noopener noreferrer"
+                  >
+                    <FacebookIcon
+                      fontSize="medium"
+                      color="primary"
+                      value="facebook"
+                      className={classes.icon}
+                    />
+                  </a>
+                )}
+                {socialMedia.instagram && (
+                  <a
+                    aria-label="instagram link"
+                    target="_blank"
+                    href={socialMedia.instagram}
+                    rel="noopener noreferrer"
+                  >
+                    <InstagramIcon
+                      fontSize="medium"
+                      color="primary"
+                      value="instagram"
+                      className={classes.icon}
+                    />
+                  </a>
+                )}
+                {socialMedia.twitter && (
+                  <a
+                    aria-label="twitter link"
+                    target="_blank"
+                    href={socialMedia.twitter}
+                    rel="noopener noreferrer"
+                  >
+                    <TwitterIcon
+                      fontSize="medium"
+                      color="primary"
+                      value="twitter"
+                      className={classes.icon}
+                    />
+                  </a>
+                )}
+                {socialMedia.youtube && (
+                  <a
+                    aria-label="youtube link"
+                    target="_blank"
+                    href={socialMedia.youtube}
+                    rel="noopener noreferrer"
+                  >
+                    <YouTubeIcon
+                      fontSize="medium"
+                      color="primary"
+                      value="youtube"
+                      className={classes.icon}
+                    />
+                  </a>
+                )}
+              </div>
+              <Typography variant="body2">
+                &#91; {categories.join(", ")} &#93;
+              </Typography>
+            </Grid>
+
+            <Grid item md={5} className={classes.map}>
+              {Object.keys(coordinates).length > 0 && (
+                <MapContainer coordinates={coordinates} />
+              )}
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </div>
     </div>
   );
 }

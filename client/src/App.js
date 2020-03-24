@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   main: {
     display: "flex",
     flex: "auto",
-    width: "100vw"
+    width: "100%"
   }
 }));
 
