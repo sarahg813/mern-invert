@@ -28,7 +28,7 @@ const SearchForm = props => {
   const [searchValue, setSearchValue] = useState("");
   const [data, setData] = useState({});
 
-  const search = async () => {
+  const handleSubmit = async () => {
     try {
       const response = await axios.get("/studios/search", {
         params: { q: searchValue }
@@ -60,6 +60,7 @@ const SearchForm = props => {
               variant="outlined"
               id="mui-theme-provider-outlined-input"
               color="primary"
+              type="text"
               InputProps={{
                 className: classes.textInput
               }}
@@ -69,7 +70,7 @@ const SearchForm = props => {
               color="primary"
               aria-label="search"
               component="span"
-              onClick={search}
+              onClick={handleSubmit}
             >
               <SearchIcon fontSize="large" type="submit" value="search" />
             </IconButton>

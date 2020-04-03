@@ -113,105 +113,130 @@ function StudioPage() {
 
           <Grid container justify="space-between">
             <Grid item md={7}>
-              <Typography variant="body1">
-                <RoomIcon
-                  fontSize="small"
-                  color="primary"
-                  value="address pin icon"
-                />{" "}
-                {address.street}, {address.city}, {stateName[0]}{" "}
-                {address.postalCode} <br />
-                <PhoneIcon
-                  fontSize="small"
-                  color="primary"
-                  value="phone"
-                />{" "}
-                {studio.phoneNum}
-              </Typography>
-              <Typography variant="body1">
-                <LinkIcon fontSize="small" color="primary" value="link icon" />{" "}
-                <a
-                  target="_blank"
-                  href={studio.website}
-                  rel="noopener noreferrer"
-                  className={classes.website}
-                >
-                  {studio.website}
-                </a>
-              </Typography>
-              <Typography variant="body1">
-                <EmailIcon
-                  fontSize="small"
-                  color="primary"
-                  value="email icon"
-                />{" "}
-                {studio.email}
-              </Typography>
-              <div className={classes.mediaIcons}>
-                {socialMedia.facebook && (
-                  <a
-                    aria-label="facebook"
-                    target="_blank"
-                    href={socialMedia.facebook}
-                    rel="noopener noreferrer"
-                  >
-                    <FacebookIcon
-                      fontSize="medium"
-                      color="primary"
-                      value="facebook"
-                      className={classes.icon}
-                    />
-                  </a>
-                )}
-                {socialMedia.instagram && (
-                  <a
-                    aria-label="instagram link"
-                    target="_blank"
-                    href={socialMedia.instagram}
-                    rel="noopener noreferrer"
-                  >
-                    <InstagramIcon
-                      fontSize="medium"
-                      color="primary"
-                      value="instagram"
-                      className={classes.icon}
-                    />
-                  </a>
-                )}
-                {socialMedia.twitter && (
-                  <a
-                    aria-label="twitter link"
-                    target="_blank"
-                    href={socialMedia.twitter}
-                    rel="noopener noreferrer"
-                  >
-                    <TwitterIcon
-                      fontSize="medium"
-                      color="primary"
-                      value="twitter"
-                      className={classes.icon}
-                    />
-                  </a>
-                )}
-                {socialMedia.youtube && (
-                  <a
-                    aria-label="youtube link"
-                    target="_blank"
-                    href={socialMedia.youtube}
-                    rel="noopener noreferrer"
-                  >
-                    <YouTubeIcon
-                      fontSize="medium"
-                      color="primary"
-                      value="youtube"
-                      className={classes.icon}
-                    />
-                  </a>
-                )}
-              </div>
-              <Typography variant="body2">
-                &#91; {categories.join(", ")} &#93;
-              </Typography>
+              <Grid container>
+                <Grid item md={1}>
+                  <RoomIcon
+                    fontSize="medium"
+                    color="primary"
+                    value="address pin icon"
+                  />
+                </Grid>
+                <Grid item md={11}>
+                  <Typography variant="body1">
+                    {address.street}
+                    <br /> {address.city}, {stateName[0]} {address.postalCode}
+                    <br /> {address.country}
+                  </Typography>
+                </Grid>
+                <Grid item md={1}>
+                  <PhoneIcon
+                    fontSize="medium"
+                    color="primary"
+                    value="phone icon"
+                  />
+                </Grid>
+                <Grid item md={11}>
+                  <Typography variant="body1">{studio.phoneNum}</Typography>
+                </Grid>
+                <Grid item md={1}>
+                  <LinkIcon
+                    fontSize="medium"
+                    color="primary"
+                    value="link icon"
+                  />
+                </Grid>
+                <Grid item md={11}>
+                  <Typography variant="body1">
+                    <a
+                      target="_blank"
+                      href={studio.website}
+                      rel="noopener noreferrer"
+                      className={classes.website}
+                    >
+                      {studio.website}
+                    </a>
+                  </Typography>
+                </Grid>
+                <Grid item md={1}>
+                  <EmailIcon
+                    fontSize="medium"
+                    color="primary"
+                    value="email icon"
+                  />
+                </Grid>
+                <Grid item md={11}>
+                  <Typography variant="body1">{studio.email}</Typography>
+                </Grid>
+                <Grid item md={12}>
+                  <div className={classes.mediaIcons}>
+                    {socialMedia.facebook && (
+                      <a
+                        aria-label="facebook"
+                        target="_blank"
+                        href={socialMedia.facebook}
+                        rel="noopener noreferrer"
+                      >
+                        <FacebookIcon
+                          fontSize="medium"
+                          color="primary"
+                          value="facebook"
+                          className={classes.icon}
+                        />
+                      </a>
+                    )}
+                    {socialMedia.instagram && (
+                      <a
+                        aria-label="instagram link"
+                        target="_blank"
+                        href={socialMedia.instagram}
+                        rel="noopener noreferrer"
+                      >
+                        <InstagramIcon
+                          fontSize="medium"
+                          color="primary"
+                          value="instagram"
+                          className={classes.icon}
+                        />
+                      </a>
+                    )}
+                    {socialMedia.twitter && (
+                      <a
+                        aria-label="twitter link"
+                        target="_blank"
+                        href={socialMedia.twitter}
+                        rel="noopener noreferrer"
+                      >
+                        <TwitterIcon
+                          fontSize="medium"
+                          color="primary"
+                          value="twitter"
+                          className={classes.icon}
+                        />
+                      </a>
+                    )}
+                    {socialMedia.youtube && (
+                      <a
+                        aria-label="youtube link"
+                        target="_blank"
+                        href={socialMedia.youtube}
+                        rel="noopener noreferrer"
+                      >
+                        <YouTubeIcon
+                          fontSize="medium"
+                          color="primary"
+                          value="youtube"
+                          className={classes.icon}
+                        />
+                      </a>
+                    )}
+                  </div>
+                </Grid>
+                <Grid item md={12}>
+                  <Typography variant="body2">
+                    &#91; {categories.join(", ")} &#93;
+                  </Typography>
+                </Grid>
+              </Grid>
             </Grid>
 
             <Grid item md={5} className={classes.map}>
