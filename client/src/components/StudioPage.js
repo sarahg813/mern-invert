@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../map.css";
 import { useParams, withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, Grid, Typography } from "@material-ui/core";
@@ -12,7 +11,7 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import EmailIcon from "@material-ui/icons/Email";
 import RoomIcon from "@material-ui/icons/Room";
 import LinkIcon from "@material-ui/icons/Link";
-import MapContainer from "./MapContainer";
+import MapContainer2 from "./MapContainer2";
 import handstandImg from "../images/backgroundfigures/handstand-300.png";
 import lyraImg from "../images/backgroundfigures/lyra-250.png";
 
@@ -21,43 +20,43 @@ const useStyles = makeStyles({
     width: "100vw",
     color: "white",
     background: `url(${handstandImg}) left bottom no-repeat, url(${lyraImg}) right top no-repeat`,
-    display: "flex"
+    display: "flex",
   },
   container: {
-    margin: "auto 8rem auto 8rem"
+    margin: "auto 8rem auto 8rem",
   },
   gridContainer: {
     border: "1px solid #344675",
     borderRadius: "5%",
-    padding: "2rem"
+    padding: "2rem",
   },
   circle: {
     backgroundColor: "#000",
     borderRadius: "10%",
     height: "150px",
     width: "150px",
-    margin: "30px"
+    margin: "30px",
   },
   map: {
     height: "400px",
-    width: "400px"
+    width: "400px",
   },
   studioName: {
-    fontFamily: "Playfair Display"
+    fontFamily: "Playfair Display",
   },
   nameContainer: {
-    margin: "1rem 0 3rem 0"
+    margin: "1rem 0 3rem 0",
   },
   mediaIcons: {
-    margin: ".5rem"
+    margin: ".5rem",
   },
   icon: {
-    marginRight: ".5rem"
+    marginRight: ".5rem",
   },
-  website: {
+  link: {
     textDecoration: "none",
-    color: "white"
-  }
+    color: "white",
+  },
 });
 
 function StudioPage() {
@@ -136,7 +135,11 @@ function StudioPage() {
                   />
                 </Grid>
                 <Grid item md={11}>
-                  <Typography variant="body1">{studio.phoneNum}</Typography>
+                  <Typography variant="body1">
+                    <a href={`tel:${studio.phoneNum}`} className={classes.link}>
+                      {studio.phoneNum}
+                    </a>
+                  </Typography>
                 </Grid>
                 <Grid item md={1}>
                   <LinkIcon
@@ -151,7 +154,7 @@ function StudioPage() {
                       target="_blank"
                       href={studio.website}
                       rel="noopener noreferrer"
-                      className={classes.website}
+                      className={classes.link}
                     >
                       {studio.website}
                     </a>
@@ -241,7 +244,7 @@ function StudioPage() {
 
             <Grid item md={5} className={classes.map}>
               {Object.keys(coordinates).length > 0 && (
-                <MapContainer coordinates={coordinates} />
+                <MapContainer2 coordinates={coordinates} />
               )}
             </Grid>
           </Grid>

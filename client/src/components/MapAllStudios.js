@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 import L from "leaflet";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
-// import "./MapContainer.css";
+import Button from "@material-ui/core/Button";
+import "./MapAllStudios.css";
 
 const myIcon = L.icon({
   iconUrl:
@@ -11,26 +14,67 @@ const myIcon = L.icon({
   popupAnchor: [0, -41],
 });
 
-const MapContainer2 = (props) => {
-  const position = [props.coordinates.latitude, props.coordinates.longitude];
+const MapAllStudios = () => {
+  const [data, setData] = useState({ studios: [] });
+  let history = useHistory();
 
-  return (
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/studios/");
+        setData({ studios: response.data });
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleClick = (id) => {
+    history.push("/profile/" + id);
+  };
+
+  return data.studios.length > 0 ? (
     <Map
-      center={position}
-      zoom={17}
-      style={{ width: "400px", height: "400px" }}
+      center={[37.7749, -122.4194]}
+      zoom={2}
+      style={{ width: "100%", height: "85vh" }}
     >
       <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={position} icon={myIcon}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+
+      {data.studios.map((studio) => {
+        const position = [
+          studio.coordinates.latitude,
+          studio.coordinates.longitude,
+        ];
+        return (
+          <Marker position={position} key={studio._id} icon={myIcon}>
+            <Popup>
+              {studio.name} <br />
+              {studio.address.street}
+              <br />
+              {studio.address.city}, {studio.address.state[0]}{" "}
+              {studio.address.postalCode}
+              <br />
+              <Button
+                type="button"
+                onClick={() => {
+                  handleClick(studio._id);
+                }}
+              >
+                View More Info
+              </Button>
+            </Popup>
+          </Marker>
+        );
+      })}
     </Map>
+  ) : (
+    "Data is loading..."
   );
 };
 
-export default MapContainer2;
+export default MapAllStudios;

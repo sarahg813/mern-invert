@@ -17,7 +17,6 @@ const studioSchema = new Schema({
   phoneNum: String,
   email: String,
   website: String,
-  picture: String,
   socialMedia: {},
   categories: []
 });

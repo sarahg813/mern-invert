@@ -17,11 +17,11 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
 
-const useStyles1 = makeStyles(theme => ({
+const useStyles1 = makeStyles((theme) => ({
   root: {
     flexShrink: 0,
-    marginLeft: theme.spacing(2.5)
-  }
+    marginLeft: theme.spacing(2.5),
+  },
 }));
 
 function TablePaginationActions(props) {
@@ -29,19 +29,19 @@ function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onChangePage } = props;
 
-  const handleFirstPageButtonClick = event => {
+  const handleFirstPageButtonClick = (event) => {
     onChangePage(event, 0);
   };
 
-  const handleBackButtonClick = event => {
+  const handleBackButtonClick = (event) => {
     onChangePage(event, page - 1);
   };
 
-  const handleNextButtonClick = event => {
+  const handleNextButtonClick = (event) => {
     onChangePage(event, page + 1);
   };
 
-  const handleLastPageButtonClick = event => {
+  const handleLastPageButtonClick = (event) => {
     onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
@@ -91,19 +91,19 @@ TablePaginationActions.propTypes = {
   count: PropTypes.number.isRequired,
   onChangePage: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired
+  rowsPerPage: PropTypes.number.isRequired,
 };
 
 const useStyles2 = makeStyles({
   table: {
-    minWidth: 500
-  }
+    minWidth: 500,
+  },
 });
 
 export default function StudioList() {
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [data, setData] = useState({ studios: [] });
   let history = useHistory();
 
@@ -119,7 +119,7 @@ export default function StudioList() {
     fetchData();
   }, []);
 
-  const pushHandle = id => {
+  const handleClick = (id) => {
     history.push("/profile/" + id);
   };
 
@@ -131,7 +131,7 @@ export default function StudioList() {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = event => {
+  const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -146,12 +146,12 @@ export default function StudioList() {
                 page * rowsPerPage + rowsPerPage
               )
             : data.studios
-          ).map(studio => (
+          ).map((studio) => (
             <TableRow
               hover
               key={studio.name}
               onClick={() => {
-                pushHandle(studio._id);
+                handleClick(studio._id);
               }}
             >
               <TableCell component="th" scope="row">
@@ -183,7 +183,7 @@ export default function StudioList() {
               page={page}
               SelectProps={{
                 inputProps: { "aria-label": "rows per page" },
-                native: true
+                native: true,
               }}
               onChangePage={handleChangePage}
               onChangeRowsPerPage={handleChangeRowsPerPage}

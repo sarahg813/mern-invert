@@ -43,37 +43,21 @@ router.route("/search").get((req, res) => {
 //route to add a studio
 router.route("/add").post((req, res) => {
   const name = req.body.name;
-  const street = req.body.street;
-  const city = req.body.city;
-  const state = req.body.state;
-  const postalCode = req.body.postalCode;
-  const country = req.body.country;
-  const latitude = req.body.latitude;
-  const longitude = req.body.longitude;
+  const address = req.body.address;
+  const coordinates = req.body.coordinates;
   const phoneNum = req.body.phoneNum;
   const email = req.body.email;
   const website = req.body.website;
-  const picture = req.body.picture;
-  const socialMedia = toObject(req.body.socialMedia.split(","));
-  const categories = req.body.categories.split(",");
+  const socialMedia = req.body.socialMedia;
+  const categories = req.body.categories;
 
   const newStudio = new Studio({
     name,
-    address: {
-      street,
-      city,
-      state,
-      postalCode,
-      country
-    },
-    coordinates: {
-      latitude,
-      longitude
-    },
+    address,
+    coordinates,
     phoneNum,
     email,
     website,
-    picture,
     socialMedia,
     categories
   });
@@ -108,7 +92,6 @@ router.route("/update/:id").post((req, res) => {
       studio.phoneNum = req.body.phoneNum;
       studio.email = req.body.email;
       studio.website = req.body.address;
-      studio.picture = req.body.picture;
       studio.socialMedia = req.body.socialMedia;
       studio.categories = req.body.categories;
 

@@ -6,34 +6,34 @@ import {
   Button,
   Toolbar,
   Typography,
-  useScrollTrigger
+  useScrollTrigger,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   transparentBar: {
-    backgroundColor: "transparent"
+    backgroundColor: "transparent",
   },
   colorBar: {
-    backgroundColor: "#171940"
+    backgroundColor: "#171940",
   },
   padding: {
     paddingRight: 30,
-    cursor: "pointer"
+    cursor: "pointer",
   },
   button: {
     margin: 1,
     color: "#fff",
-    fontFamily: "Montserrat"
+    fontFamily: "Montserrat",
   },
   toolbar: {
-    display: "flex"
+    display: "flex",
   },
 
   title: {
     fontFamily: "Yeseva One",
-    color: "#fff"
-  }
+    color: "#fff",
+  },
 }));
 
 function ElevationScroll(props) {
@@ -42,7 +42,7 @@ function ElevationScroll(props) {
   const trigger = useScrollTrigger();
 
   return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0
+    elevation: trigger ? 4 : 0,
   });
 }
 
@@ -77,6 +77,13 @@ export default function DesktopNavbar(props) {
 
           <Button component={NavLink} to="/studios" className={classes.button}>
             ALL STUDIOS
+          </Button>
+          <Button
+            component={NavLink}
+            to="/allstudiosmap"
+            className={classes.button}
+          >
+            STUDIOS MAP
           </Button>
           <Button component={NavLink} to="/create" className={classes.button}>
             CREATE STUDIO
