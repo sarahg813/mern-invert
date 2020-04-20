@@ -80,7 +80,7 @@ export default function DesktopNavbar(props) {
           </Button>
           <Button
             component={NavLink}
-            to="/allstudiosmap"
+            to="/studiosmap"
             className={classes.button}
           >
             STUDIOS MAP

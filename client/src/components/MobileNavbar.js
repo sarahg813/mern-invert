@@ -7,38 +7,38 @@ import {
   Grid,
   SwipeableDrawer,
   MenuList,
-  MenuItem
+  MenuItem,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   item: {
-    fontFamily: "Montserrat"
+    fontFamily: "Montserrat",
   },
   mobileBar: {
-    backgroundColor: "#171940"
+    backgroundColor: "#171940",
   },
   list: {
-    width: 200
+    width: 200,
   },
   padding: {
     paddingRight: 30,
-    cursor: "pointer"
+    cursor: "pointer",
   },
   sideBarIcon: {
     padding: 0,
     color: "white",
-    cursor: "pointer"
+    cursor: "pointer",
   },
   title: {
     margin: 1,
     color: "#fff",
-    fontFamily: "Yeseva One"
+    fontFamily: "Yeseva One",
   },
   toolbar: {
-    display: "flex"
-  }
+    display: "flex",
+  },
 }));
 
 export default function MobileNavbar() {
@@ -105,6 +105,17 @@ export default function MobileNavbar() {
               divider
             >
               All Studios
+            </MenuItem>
+            <MenuItem
+              className={classes.item}
+              component={NavLink}
+              onClick={drawerClick}
+              onKeyDown={drawerClick}
+              to="/studiosmap"
+              button
+              divider
+            >
+              Studios Map
             </MenuItem>
             <MenuItem
               className={classes.item}

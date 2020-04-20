@@ -9,7 +9,7 @@ import EditStudio from "./components/EditStudio";
 import CreateStudio from "./components/CreateStudio";
 import StudioPage from "./components/StudioPage";
 import SearchResultPage from "./components/SearchResultPage";
-import MapAllStudios from "./components/MapAllStudios";
+import AllStudiosMap from "./components/AllStudiosMap";
 import theme from "./theme";
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +41,7 @@ function App() {
               <Route path="/studios" exact component={StudioList} />
               <Route path="/profile/:id" component={StudioPage} />
               <Route path="/edit/:id" component={EditStudio} />
-              <Route path="/allstudiosmap" component={MapAllStudios} />
+              <Route path="/studiosmap" component={AllStudiosMap} />
               <Route path="/create" component={CreateStudio} />
               <Route path="/results" component={SearchResultPage} />
             </Switch>

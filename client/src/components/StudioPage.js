@@ -11,7 +11,7 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import EmailIcon from "@material-ui/icons/Email";
 import RoomIcon from "@material-ui/icons/Room";
 import LinkIcon from "@material-ui/icons/Link";
-import MapContainer2 from "./MapContainer2";
+import StudioMap from "./StudioMap";
 import handstandImg from "../images/backgroundfigures/handstand-300.png";
 import lyraImg from "../images/backgroundfigures/lyra-250.png";
 
@@ -244,7 +244,7 @@ function StudioPage() {
 
             <Grid item md={5} className={classes.map}>
               {Object.keys(coordinates).length > 0 && (
-                <MapContainer2 coordinates={coordinates} />
+                <StudioMap coordinates={coordinates} />
               )}
             </Grid>
           </Grid>

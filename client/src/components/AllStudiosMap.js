@@ -4,7 +4,6 @@ import axios from "axios";
 import L from "leaflet";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import Button from "@material-ui/core/Button";
-import "./MapAllStudios.css";
 
 const myIcon = L.icon({
   iconUrl:
@@ -14,7 +13,7 @@ const myIcon = L.icon({
   popupAnchor: [0, -41],
 });
 
-const MapAllStudios = () => {
+const AllStudiosMap = () => {
   const [data, setData] = useState({ studios: [] });
   let history = useHistory();
 
@@ -77,4 +76,4 @@ const MapAllStudios = () => {
   );
 };
 
-export default MapAllStudios;
+export default AllStudiosMap;

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import L from "leaflet";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
-// import "./MapContainer.css";
 
 const myIcon = L.icon({
   iconUrl:
@@ -11,7 +10,7 @@ const myIcon = L.icon({
   popupAnchor: [0, -41],
 });
 
-const MapContainer2 = (props) => {
+const StudioMap = (props) => {
   const position = [props.coordinates.latitude, props.coordinates.longitude];
 
   return (
@@ -33,4 +32,4 @@ const MapContainer2 = (props) => {
   );
 };
 
-export default MapContainer2;
+export default StudioMap;
