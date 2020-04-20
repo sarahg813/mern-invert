@@ -33,6 +33,12 @@ const AllStudiosMap = () => {
     history.push("/profile/" + id);
   };
 
+  // var CartoDB_VoyagerLabelsUnder = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
+  //   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  //   subdomains: 'abcd',
+  //   maxZoom: 19
+  // });
+
   return data.studios.length > 0 ? (
     <Map
       center={[37.7749, -122.4194]}
@@ -40,8 +46,10 @@ const AllStudiosMap = () => {
       style={{ width: "100%", height: "85vh" }}
     >
       <TileLayer
-        attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png"
+        subdomains="abcd"
+        maxZoom="19"
       />
 
       {data.studios.map((studio) => {
